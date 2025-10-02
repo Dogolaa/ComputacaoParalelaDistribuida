@@ -10,10 +10,10 @@ public class Cliente {
 
     public static void main(String[] args) {
         try (
-                Socket socket = new Socket(HOST, PORTA);
-                ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
-                ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
-                Scanner scanner = new Scanner(System.in)
+            Socket socket = new Socket(HOST, PORTA);
+            ObjectOutputStream saida = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
+            Scanner scanner = new Scanner(System.in)
         ) {
             System.out.println("Conectado ao servidor!");
             int opcao;
@@ -65,14 +65,14 @@ public class Cliente {
         out.flush();
         Resposta resposta = (Resposta) in.readObject();
         System.out.println("Resposta do Servidor: " + resposta.getStatus());
-
+        
         if (resposta.getCorpo() instanceof List) {
-            ((List<?>) resposta.getCorpo()).forEach(System.out::println);
+             ((List<?>) resposta.getCorpo()).forEach(System.out::println);
         } else {
             System.out.println(resposta.getCorpo());
         }
     }
-
+    
     private static void inserirVeiculo(Scanner sc, ObjectOutputStream out, ObjectInputStream in) throws Exception {
         System.out.println("--- Inserir Veículo ---");
         System.out.print("Placa: ");
@@ -99,17 +99,19 @@ public class Cliente {
         String placa = sc.nextLine();
         enviarRequisicao(new Requisicao(Operacao.REMOVER, placa), out, in);
     }
-
+    
     private static void buscarVeiculo(Scanner sc, ObjectOutputStream out, ObjectInputStream in) throws Exception {
         System.out.print("Digite a placa do veículo a ser buscado: ");
         String placa = sc.nextLine();
         enviarRequisicao(new Requisicao(Operacao.BUSCAR, placa), out, in);
     }
-
+    
     private static void alterarVeiculo(Scanner sc, ObjectOutputStream out, ObjectInputStream in) throws Exception {
         System.out.println("--- Alterar Veículo ---");
         System.out.print("Digite a placa do veículo que deseja alterar: ");
         String placa = sc.nextLine();
+        // Aqui, você poderia primeiro buscar o veículo para mostrar os dados atuais.
+        // Por simplicidade, vamos pedir todos os dados novamente.
         System.out.print("Nova Marca: ");
         String marca = sc.nextLine();
         System.out.print("Novo Modelo: ");
@@ -122,12 +124,12 @@ public class Cliente {
         double km = Double.parseDouble(sc.nextLine());
         System.out.print("Novo Valor: ");
         double valor = Double.parseDouble(sc.nextLine());
-
+        
         Veiculo v = new Veiculo(placa, marca, modelo, ano, cor, km, valor);
         enviarRequisicao(new Requisicao(Operacao.ALTERAR, v), out, in);
     }
 
     private static void listarTodos(ObjectOutputStream out, ObjectInputStream in) throws Exception {
-        enviarRequisicao(new Requisicao(Operacao.LISTAR_TODOS, null), out, in);
+         enviarRequisicao(new Requisicao(Operacao.LISTAR_TODOS, null), out, in);
     }
 }

@@ -1,93 +1,69 @@
-//package sockets.objeto;
-
 import java.io.Serializable;
+import java.util.Objects;
 
-public class Veiculo  implements Serializable{
+// A classe Veiculo precisa implementar Serializable para ser enviada pela rede.
+public class Veiculo implements Serializable {
+    private static final long serialVersionUID = 1L; // Boa prática para versionamento
 
     private String placa;
     private String marca;
     private String modelo;
-    private String ano;
+    private int ano;
     private String cor;
-    private String km;
-    private Double preco;
+    private double km;
+    private double valor; // Renomeado de 'preco' para 'valor' como no requisito
 
-    public Veiculo(){}
+    public Veiculo() {}
 
-    public Veiculo(String placa, String marca, String modelo, String ano, String cor, String km, Double preco) {
+    public Veiculo(String placa, String marca, String modelo, int ano, String cor, double km, double valor) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.cor = cor;
         this.km = km;
-        this.preco = preco;
+        this.valor = valor;
     }
 
-    public String getPlaca() {
-        return placa;
+    // Getters e Setters
+    public String getPlaca() { return placa; }
+    public void setPlaca(String placa) { this.placa = placa; }
+    public String getMarca() { return marca; }
+    public void setMarca(String marca) { this.marca = marca; }
+    public String getModelo() { return modelo; }
+    public void setModelo(String modelo) { this.modelo = modelo; }
+    public int getAno() { return ano; }
+    public void setAno(int ano) { this.ano = ano; }
+    public String getCor() { return cor; }
+    public void setCor(String cor) { this.cor = cor; }
+    public double getKm() { return km; }
+    public void setKm(double km) { this.km = km; }
+    public double getValor() { return valor; }
+    public void setValor(double valor) { this.valor = valor; }
+
+    @Override
+    public String toString() {
+        return "Veiculo{" +
+                "placa='" + placa + '\'' +
+                ", marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", ano=" + ano +
+                ", cor='" + cor + '\'' +
+                ", km=" + km +
+                ", valor=" + valor +
+                '}';
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Veiculo veiculo = (Veiculo) o;
+        return Objects.equals(placa, veiculo.placa);
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public String getAno() {
-        return ano;
-    }
-
-    public void setAno(String ano) {
-        this.ano = ano;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
-
-    public String getKm() {
-        return km;
-    }
-
-    public void setKm(String km) {
-        this.km = km;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public boolean equals(Object object) {
-        if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
-        Veiculo veiculo = (Veiculo) object;
-        return java.util.Objects.equals(placa, veiculo.placa) && java.util.Objects.equals(marca, veiculo.marca) && java.util.Objects.equals(modelo, veiculo.modelo) && java.util.Objects.equals(ano, veiculo.ano) && java.util.Objects.equals(cor, veiculo.cor) && java.util.Objects.equals(km, veiculo.km) && java.util.Objects.equals(preco, veiculo.preco);
-    }
-
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), placa, marca, modelo, ano, cor, km, preco);
+        return Objects.hash(placa);
     }
 }

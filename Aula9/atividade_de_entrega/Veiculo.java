@@ -1,9 +1,8 @@
 import java.io.Serializable;
 import java.util.Objects;
 
-// A classe Veiculo precisa implementar Serializable para ser enviada pela rede.
 public class Veiculo implements Serializable {
-    private static final long serialVersionUID = 1L; // Boa prática para versionamento
+    private static final long serialVersionUID = 1L;
 
     private String placa;
     private String marca;
@@ -11,7 +10,7 @@ public class Veiculo implements Serializable {
     private int ano;
     private String cor;
     private double km;
-    private double valor; // Renomeado de 'preco' para 'valor' como no requisito
+    private double valor;
 
     public Veiculo() {}
 
@@ -25,7 +24,6 @@ public class Veiculo implements Serializable {
         this.valor = valor;
     }
 
-    // Getters e Setters
     public String getPlaca() { return placa; }
     public void setPlaca(String placa) { this.placa = placa; }
     public String getMarca() { return marca; }

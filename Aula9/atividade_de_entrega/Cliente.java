@@ -110,8 +110,6 @@ public class Cliente {
         System.out.println("--- Alterar Veículo ---");
         System.out.print("Digite a placa do veículo que deseja alterar: ");
         String placa = sc.nextLine();
-        // Aqui, você poderia primeiro buscar o veículo para mostrar os dados atuais.
-        // Por simplicidade, vamos pedir todos os dados novamente.
         System.out.print("Nova Marca: ");
         String marca = sc.nextLine();
         System.out.print("Novo Modelo: ");

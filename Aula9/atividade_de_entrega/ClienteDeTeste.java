@@ -123,12 +123,10 @@ public class ClienteDeTeste {
         }
 
         private Requisicao criarRequisicaoAleatoria() {
-            // Agora, 100% das operações de busca usarão placas que sabemos que existem
             if (!placasInseridas.isEmpty()) {
                 String placaExistente = placasInseridas.get(random.nextInt(placasInseridas.size()));
                 return new Requisicao(Operacao.BUSCAR, placaExistente);
             } else {
-                // Fallback caso a lista de placas esteja vazia
                 return new Requisicao(Operacao.BUSCAR, "PLACA-FALHA");
             }
         }

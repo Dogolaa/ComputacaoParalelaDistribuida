@@ -19,7 +19,6 @@ public class GerenciadorCliente implements Runnable {
             ObjectInputStream entrada = new ObjectInputStream(clienteSocket.getInputStream())
         ) {
             Requisicao requisicao;
-            // Loop para processar múltiplas requisições do mesmo cliente
             while ((requisicao = (Requisicao) entrada.readObject()) != null) {
                 Resposta resposta = processarRequisicao(requisicao);
                 saida.writeObject(resposta);
